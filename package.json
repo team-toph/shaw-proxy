@@ -1,0 +1,27 @@
+{
+  "name": "shaw-products-service",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx webpack-cli --watch",
+    "server": "node server/server.js",
+    "seed": "echo cannot seed yet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-Katara/Kana-service.git"
+  },
+  "author": "Shaw Summa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Team-Katara/Kana-service/issues"
+  },
+  "homepage": "https://github.com/Team-Katara/Kana-service#readme",
+  "dependencies": {
+    "yargs": "^15.4.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.12"
+  }
+}
