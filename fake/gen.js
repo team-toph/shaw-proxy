@@ -1,32 +1,43 @@
+const wf = require('worker-farm');
 const fs = require('fs');
-const faker = require('faker');
+// const { exit } = require('process');
 
-const stm = fs.createWriteStream('./fake/data.js', { flags: 'w' });
+const files = 8;
+const max = 1;
+const targets = 1000 * 1000;
+for (let i = 0; i < files; i++) {
+  const workers = wf(require.resolve('./worker.js'));
+  const target = Math.floor(targets / files);
 
-const before = function () {
-  console.time('generation');
-  stm.write('module.exports = [\n');
-};
-const after = function () {
-  stm.write('null\n]\n');
-  console.timeEnd('generation');
-};
-let count = 0;
-let target = 10000;
-let times = 1000;
-for (let i = 0; i < target; i++) {
-  setTimeout(function () {
-    let str = "";
-    for (let i = 0; i < times; i++) {
-      str += `{"name": "${faker.commerce.productName()}","img":"https://source.unsplash.com/1600x900/?${faker.commerce.productAdjective()}","rat":${Math.ceil(Math.random() * 5)},"cost":"${faker.commerce.price()}","cond":"${Math.random() < 0.5 ? "New" : "Old"}"},\n`;
-    }
-    if (count === 0) {
-      before();
-    }
-    stm.write(str);
-    count++;
-    if (count === target) {
-      after();
-    }
-  }, 0);
+  const stm = fs.createWriteStream(`./fake/data_${i}.json`, { flags: 'w' });
+
+  let strc = 0;
+
+  console.log(`worker start: ${i}`);
+
+  const before = function () {
+    stm.write('[\n');
+  };
+
+  const after = function () {
+    stm.write(']\n');
+  };
+
+  for (let i = 0; i < max; i++) {
+    workers({ max: Math.ceil(target / (max)), place: i }, function (str) {
+      if (strc === 0) {
+        before();
+      }
+      strc += 1;
+      if (strc === max) {
+        stm.write(str.slice(0, -2) + '\n');
+        after();
+        wf.end(workers);
+      }
+      else {
+        stm.write(str);
+      }
+    });
+  }
 }
+// exit();
