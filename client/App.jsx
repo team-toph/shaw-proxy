@@ -116,7 +116,7 @@ class App extends React.Component {
     var urlParams = new URLSearchParams(window.location.search.substring(1));
     var params = urlParams.get('id');
 
-    axios.get('/api/similaritems/?id=' + params)
+    axios.get('/api/similaritems/' + params)
       .then(data => {
         var product = [];
         product.push(data.data);

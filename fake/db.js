@@ -6,7 +6,7 @@ let files = 8;
 let each = 300;
 
 const client = new cassandra.Client({
-  contactPoints: ['127.0.0.1:9042'],
+  contactPoints:['127.0.0.1:9042'],
   localDataCenter: 'datacenter1',
   keyspace: 'similar',
 });
@@ -50,7 +50,7 @@ const loop = function (i) {
           process.stdout.write(`workers[${i}]: ${cur}%`);
           last = cur;
         }
-        if (cur > 99) {
+        if (cur > 99.9) {
           loop(i + 1);
           end(i);
           process.stdout.clearLine();

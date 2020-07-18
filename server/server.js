@@ -1,36 +1,22 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
-
-const Similar = null;
+const compression = require('compression');
+const get = require('./db.js');
 
 const app = express();
 
 app.use(morgan('tiny'));
 app.use(cors());
+app.use(compression());
 
-app.get('/bundle.js', function (req, res) {
-  res.sendFile('../path/bundle.js');
-});
+app.use(express.static('./dist'));
 
-app.get('/', function (req, res) {
-  res.sendFile('../path/index.html');
-});
-
-app.get('/index.html', function (req, res) {
-  res.sendFile('../path/index.html');
-});
-
-app.get('/api/similartities', function (req, res) {
-  var group = req.query.id;
-  // Similar.get({id: id})
-  //   .found(function (err, data) {
-  //     if (err) {
-  //       throw err;
-  //     }
-  //     res.json(data[0].diff);
-  //   })
-  res.status(200).json({shaw: 'test'});
+app.get('/api/similaritems/:id', function (req, res) {
+  var group = Number(req.params.id);
+  get(group, () => {
+    res.status(200).json({shaw: 'test'});
+  });
 });
 
 const port = 8086;
