@@ -12,10 +12,24 @@ app.use(compression());
 
 app.use(express.static('./dist'));
 
+const clean = function(point) {
+  return {
+    name: point.name,
+    guitarImage: point.img,
+    Ratings: point.rating,
+    ReviewCount: Math.ceil(1 / Math.random()),
+    Price: point.price,
+    Condition: point.good ? 'New' : 'Old',
+  };
+};
+
 app.get('/api/similaritems/:id', function (req, res) {
   var group = Number(req.params.id);
-  get(group, () => {
-    res.status(200).json({shaw: 'test'});
+  if (isNaN(group)) {
+    group = 0;
+  }
+  get(group, (data) => {
+    res.status(200).json(data.map(clean));
   });
 });
 

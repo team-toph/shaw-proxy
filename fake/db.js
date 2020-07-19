@@ -2,7 +2,7 @@ const fs = require('fs');
 const cassandra = require('cassandra-driver');
 const { exit } = require('process');
 
-let files = 8;
+let files = 32;
 let each = 300;
 
 const client = new cassandra.Client({
