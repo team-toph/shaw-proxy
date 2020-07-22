@@ -37,6 +37,7 @@
     "faker": "^4.1.0",
     "jest": "^26.1.0",
     "morgan": "^1.10.0",
+    "newrelic": "^6.11.0",
     "react-dom": "^16.13.1",
     "react-star-ratings": "^2.3.0",
     "styled-components": "^5.1.1",
