@@ -24,3 +24,4 @@
 {"v":0,"level":40,"name":"newrelic","hostname":"ubuntu-XPS-13-9300","pid":163713,"time":"2020-07-22T18:12:12.342Z","msg":"Merging 829 of 833 events into TransactionEventAggregator for next harvest","component":"event_aggregator"}
 {"v":0,"level":40,"name":"newrelic","hostname":"ubuntu-XPS-13-9300","pid":163713,"time":"2020-07-22T18:52:53.263Z","msg":"Merging 351 of 753 events into TransactionEventAggregator for next harvest","component":"event_aggregator"}
 {"v":0,"level":40,"name":"newrelic","hostname":"ubuntu-XPS-13-9300","pid":163713,"time":"2020-07-22T18:53:19.887Z","msg":"Merging 0 of 833 events into TransactionEventAggregator for next harvest","component":"event_aggregator"}
+{"v":0,"level":40,"name":"newrelic","hostname":"ubuntu-XPS-13-9300","pid":163713,"time":"2020-07-22T18:53:52.655Z","msg":"Merging 589 of 833 events into TransactionEventAggregator for next harvest","component":"event_aggregator"}
